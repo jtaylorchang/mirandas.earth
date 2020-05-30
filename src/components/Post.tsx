@@ -8,11 +8,17 @@ import Link from '@components/Link';
 
 const Post: React.FC<{
   post: TPost;
+  featured?: boolean;
   expanded?: boolean;
-}> = ({ post, expanded = false }) => {
+}> = ({ post, featured = false, expanded = false }) => {
+  if (post === null) return <React.Fragment />;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.date}>{post.date}</Text>
+      <View style={styles.topText}>
+        <Text style={styles.category}>{post.category}</Text>
+        <Text style={styles.date}>{post.date}</Text>
+      </View>
 
       <Text style={styles.title}>{post.title}</Text>
 
@@ -34,16 +40,26 @@ const Post: React.FC<{
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
-    marginVertical: 20,
-    maxWidth: 800
+    marginVertical: 20
+  },
+  topText: {
+    flexDirection: 'row'
+  },
+  category: {
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 16,
+    color: theme.COLORS.PRIMARY_GREEN,
+    textTransform: 'uppercase'
   },
   date: {
+    marginLeft: 16,
     fontFamily: 'OpenSans-SemiBold',
     fontSize: 16,
-    color: theme.COLORS.DARK_GRAY
+    color: theme.COLORS.GRAY,
+    textTransform: 'uppercase'
   },
   title: {
-    marginTop: 8,
+    marginTop: 4,
     fontFamily: 'PlayfairDisplay-Bold',
     fontSize: 34
   },

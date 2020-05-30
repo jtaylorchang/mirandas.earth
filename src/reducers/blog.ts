@@ -1,13 +1,18 @@
+import { TPost } from '@backend/blog';
+
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export const GET_POSTS_FAILURE = 'GET_POSTS_FAILURE';
+
+export const SET_HOVER = 'SET_HOVER';
 
 export interface TBlogState {
   isGettingPosts: boolean;
   getPostsError: boolean;
   getPostsErrorMessage: string;
 
-  posts: any[];
+  posts: TPost[];
+  featuredPost: TPost;
 }
 
 const initialState: TBlogState = {
@@ -15,7 +20,8 @@ const initialState: TBlogState = {
   getPostsError: false,
   getPostsErrorMessage: '',
 
-  posts: []
+  posts: [],
+  featuredPost: null
 };
 
 export default (state = initialState, action: any): TBlogState => {
@@ -31,7 +37,8 @@ export default (state = initialState, action: any): TBlogState => {
       return {
         ...state,
         isGettingPosts: false,
-        posts: action.posts
+        posts: action.posts,
+        featuredPost: action.featuredPost
       };
     case GET_POSTS_FAILURE:
       return {
@@ -39,6 +46,11 @@ export default (state = initialState, action: any): TBlogState => {
         isGettingPosts: false,
         getPostsError: true,
         getPostsErrorMessage: action.error.message
+      };
+    case SET_HOVER:
+      return {
+        ...state,
+        featuredPost: action.post
       };
     default:
       return state;

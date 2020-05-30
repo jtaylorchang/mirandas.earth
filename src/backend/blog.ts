@@ -32,9 +32,11 @@ export interface TLinkElement extends TMinimumBodyElement {
   link: TLink;
 }
 
-export type TBodyElement = TImageElement | TParagraphElement | TQuoteElement | TLinkElement;
+export type TBodyElement = TImageElement | TParagraphElement | TQuoteElement | TLinkElement | any;
 
 export interface TPost {
+  _id: number;
+  category: string;
   date: string;
   title: string;
   description: string;

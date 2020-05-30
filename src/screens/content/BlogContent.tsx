@@ -5,53 +5,49 @@ import { useIsFocused } from 'react-navigation-hooks';
 import moment from 'moment';
 
 import { ParamType } from '@navigation/NavigationTypes';
+import { TRedux } from '@reducers';
+import { _blog } from '@reducers/actions';
+import { TPost } from '@backend/blog';
 import { theme } from '@constants';
-import { Post } from '@components';
+import { Post, PostSelector } from '@components';
 
 const BlogContent: React.FC<{
   navigation: ParamType;
 }> = ({ navigation }) => {
   const isFocused = useIsFocused();
 
+  const posts = useSelector((state: TRedux) => state.blog.posts);
+  const featuredPost = useSelector((state: TRedux) => state.blog.featuredPost);
+
   const dispatch = useDispatch();
+  const dispatchGetPosts = React.useCallback(() => dispatch(_blog.getPosts()), [dispatch]);
 
   const scrollRef = React.useRef(undefined);
+
+  React.useEffect(() => {
+    if (isFocused) {
+      dispatchGetPosts();
+    }
+  }, [dispatchGetPosts, isFocused]);
 
   return (
     <View style={styles.container}>
       <View style={styles.splitContainer}>
-        <View style={styles.optionsContent}>
-          <Post
-            post={{
-              date: 'June 17, 2020',
-              title: "Welcome to Miranda's Earth",
-              description:
-                "My Junior year of college, I switched majors and decided I had to help save our planet. This is my story and why it's important.",
-              body: [
-                { type: 'paragraph', paragraph: 'Text goes here' },
-                { type: 'image', image: { attribution: 'todo', source: '' } },
-                { type: 'paragraph', paragraph: 'Text goes here' }
-              ],
-              image: null
-            }}
-          />
-          <Post
-            post={{
-              date: 'June 17, 2020',
-              title: 'The Perks of Being Vegetarian',
-              description:
-                "My Junior year of college, I switched majors and decided I had to help save our planet. This is my story and why it's important.",
-              body: [
-                { type: 'paragraph', paragraph: 'Text goes here' },
-                { type: 'image', image: { attribution: 'todo', source: '' } },
-                { type: 'paragraph', paragraph: 'Text goes here' }
-              ],
-              image: null
-            }}
-          />
-        </View>
+        <View style={styles.splitContent}>
+          <View style={styles.featuredContent}>
+            <Post post={featuredPost} featured={true} />
+          </View>
 
-        <View style={styles.selectedContent}></View>
+          <View style={styles.scrollContent}>
+            <ScrollView>
+              {posts
+                .filter((post: TPost) => featuredPost === null || post._id !== featuredPost._id)
+                .map((post: TPost) => (
+                  <Post key={post._id} post={post} />
+                ))}
+            </ScrollView>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -67,14 +63,26 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center'
   },
-  featureStory: {
-    backgroundColor: `${theme.COLORS.PRIMARY}60`
-  },
   splitContainer: {
-    flexDirection: 'row'
+    flex: 1,
+    padding: 20
   },
-  optionsContent: {},
-  selectedContent: {}
+  splitContent: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap'
+  },
+  featuredContent: {
+    flex: 1,
+    minWidth: 440,
+    backgroundColor: `${theme.COLORS.PRIMARY_GREEN}16`
+  },
+  scrollContent: {
+    flex: 1,
+    height: '100%',
+    minWidth: 440
+  }
 });
 
 export default BlogContent;
