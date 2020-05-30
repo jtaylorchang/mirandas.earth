@@ -22,7 +22,16 @@ const cacheImages = (images: any) => {
 };
 
 const _loadResourcesAsync = async () => {
-  await Promise.all([...cacheImages(assetImages), Font.loadAsync({})]);
+  await Promise.all([
+    ...cacheImages(assetImages),
+    Font.loadAsync({
+      OpenSans: require('../assets/font/OpenSans-Regular.ttf'),
+      'OpenSans-Bold': require('../assets/font/OpenSans-Bold.ttf'),
+      'OpenSans-SemiBold': require('../assets/font/OpenSans-SemiBold.ttf'),
+      'OpenSans-Light': require('../assets/font/OpenSans-Light.ttf'),
+      'PlayfairDisplay-Bold': require('../assets/font/PlayfairDisplay-Bold.ttf')
+    })
+  ]);
 };
 
 const App = () => {
