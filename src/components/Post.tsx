@@ -54,6 +54,7 @@ const Post: React.FC<{
 
 const styles = StyleSheet.create({
   container: {
+    flexShrink: 1,
     flexGrow: 1,
     maxWidth: 800,
     paddingHorizontal: 20,

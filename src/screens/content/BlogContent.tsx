@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   posts: {
-    paddingVertical: 20,
+    paddingBottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',
     flexWrap: 'wrap'

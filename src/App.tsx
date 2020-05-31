@@ -7,6 +7,7 @@ import * as Font from 'expo-font';
 import { images, theme } from '@constants';
 import AppNavigator from '@navigation/AppNavigator';
 import { setTopLevelNavigator, navigate } from '@navigation/NavigationService';
+import { Header } from '@components';
 import './styles/global.css';
 
 const assetImages = [
@@ -54,6 +55,14 @@ const App = () => {
     setIsLoadingComplete(true);
   }, []);
 
+  const handlePath = React.useCallback((path: string) => {
+    console.log('Path', path);
+  }, []);
+
+  React.useEffect(() => {
+    handlePath(window.location.pathname);
+  }, [handlePath]);
+
   if (!isLoadingComplete) {
     return (
       <AppLoading startAsync={_loadResourcesAsync} onError={_handleLoadingError} onFinish={_handleFinishLoading} />
@@ -61,6 +70,10 @@ const App = () => {
   } else {
     return (
       <View style={styles.container}>
+        <View style={styles.headerContainer}>
+          <Header />
+        </View>
+
         <AppNavigator
           ref={(navigatorRef) => {
             setTopLevelNavigator(navigatorRef);
@@ -75,6 +88,9 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  headerContainer: {
+    height: 56
   }
 });
 
