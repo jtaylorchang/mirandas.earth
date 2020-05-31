@@ -58,8 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   splitContainer: {
-    flex: 1,
-    padding: 20
+    flex: 1
   },
   splitContent: {
     flex: 1,
@@ -77,6 +76,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   posts: {
+    paddingVertical: 20,
     flexDirection: 'row',
     justifyContent: 'center',
     flexWrap: 'wrap'
