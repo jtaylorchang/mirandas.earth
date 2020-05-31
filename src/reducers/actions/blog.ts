@@ -1,5 +1,6 @@
 import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE, SET_HOVER } from '@reducers/blog';
 import { TPost } from '@backend/blog';
+import { images } from '@constants';
 
 const gettingPosts = () => {
   return {
@@ -41,7 +42,10 @@ export const getPosts = () => {
               { type: 'image', image: { attribution: 'todo', source: '' } },
               { type: 'paragraph', paragraph: 'Text goes here' }
             ],
-            image: null
+            image: {
+              attribution: 'Miranda Johnson',
+              source: images.WelcomeToMirandasEarth
+            }
           },
           {
             _id: 1,
@@ -55,7 +59,10 @@ export const getPosts = () => {
               { type: 'image', image: { attribution: 'todo', source: '' } },
               { type: 'paragraph', paragraph: 'Text goes here' }
             ],
-            image: null
+            image: {
+              attribution: 'Miranda Johnson',
+              source: images.ThePerksOfBeingVegetarian
+            }
           },
           {
             _id: 2,
@@ -63,13 +70,16 @@ export const getPosts = () => {
             date: 'June 17, 2020',
             title: 'How to Advocate For Change',
             description:
-              'Fixing the problems with our plant is going to be hard, really hard! So how do we go about getting help? Read my ideas on how to get involved in your community and advocate for yourself and your future!',
+              'Fixing the problems with our planet is going to be hard, really hard! So how do we go about getting help? Read my ideas on how to get involved in your community and advocate for yourself and your future!',
             body: [
               { type: 'paragraph', paragraph: 'Text goes here' },
               { type: 'image', image: { attribution: 'todo', source: '' } },
               { type: 'paragraph', paragraph: 'Text goes here' }
             ],
-            image: null
+            image: {
+              attribution: 'Miranda Johnson',
+              source: images.HowToAdvocateForChange
+            }
           }
         ],
         featuredPost: {
@@ -84,7 +94,10 @@ export const getPosts = () => {
             { type: 'image', image: { attribution: 'todo', source: '' } },
             { type: 'paragraph', paragraph: 'Text goes here' }
           ],
-          image: null
+          image: {
+            attribution: 'Miranda Johnson',
+            source: images.WelcomeToMirandasEarth
+          }
         }
       })
     );

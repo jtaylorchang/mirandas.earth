@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, Dimensions, View, Text, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { useIsFocused } from 'react-navigation-hooks';
 import moment from 'moment';
@@ -34,17 +34,11 @@ const BlogContent: React.FC<{
     <View style={styles.container}>
       <View style={styles.splitContainer}>
         <View style={styles.splitContent}>
-          <View style={styles.featuredContent}>
-            <Post post={featuredPost} featured={true} />
-          </View>
-
           <View style={styles.scrollContent}>
-            <ScrollView>
-              {posts
-                .filter((post: TPost) => featuredPost === null || post._id !== featuredPost._id)
-                .map((post: TPost) => (
-                  <Post key={post._id} post={post} />
-                ))}
+            <ScrollView contentContainerStyle={styles.posts}>
+              {posts.map((post: TPost) => (
+                <Post key={post._id} featured={featuredPost !== null && post._id === featuredPost._id} post={post} />
+              ))}
             </ScrollView>
           </View>
         </View>
@@ -75,13 +69,17 @@ const styles = StyleSheet.create({
   },
   featuredContent: {
     flex: 1,
-    minWidth: 440,
+    minWidth: 300,
     backgroundColor: `${theme.COLORS.PRIMARY_GREEN}16`
   },
   scrollContent: {
     flex: 1,
-    height: '100%',
-    minWidth: 440
+    height: '100%'
+  },
+  posts: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap'
   }
 });
 

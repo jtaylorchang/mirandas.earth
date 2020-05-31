@@ -5,6 +5,7 @@ import { TPost, TBodyElement } from '@backend/blog';
 import { theme } from '@constants';
 import BodyElement from '@components/BodyElement';
 import Link from '@components/Link';
+import RectangleImage from '@components/RectangleImage';
 
 const Post: React.FC<{
   post: TPost;
@@ -14,7 +15,14 @@ const Post: React.FC<{
   if (post === null) return <React.Fragment />;
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        featured && {
+          backgroundColor: `${theme.COLORS.PRIMARY_GREEN}16`
+        }
+      ]}
+    >
       <View style={styles.topText}>
         <Text style={styles.category}>{post.category}</Text>
         <Text style={styles.date}>{post.date}</Text>
@@ -31,7 +39,14 @@ const Post: React.FC<{
           ))}
         </View>
       ) : (
-        <Link label="Read Story" />
+        <React.Fragment>
+          <Link label="Read Story" />
+          {post.image !== null && (
+            <View style={styles.imageWrapper}>
+              <RectangleImage image={post.image} />
+            </View>
+          )}
+        </React.Fragment>
       )}
     </View>
   );
@@ -39,8 +54,11 @@ const Post: React.FC<{
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
-    marginVertical: 20
+    flexGrow: 1,
+    maxWidth: 800,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    backgroundColor: `${theme.COLORS.SUPER_LIGHT_BLUE_GRAY}16`
   },
   topText: {
     flexDirection: 'row'
@@ -74,7 +92,10 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Bold',
     fontSize: 16
   },
-  body: {}
+  body: {},
+  imageWrapper: {
+    marginTop: 24
+  }
 });
 
 export default Post;

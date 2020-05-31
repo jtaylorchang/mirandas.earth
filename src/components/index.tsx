@@ -6,5 +6,6 @@ import Link from './Link';
 import Post from './Post';
 import PostSelector from './PostSelector';
 import RectangleButton from './RectangleButton';
+import RectangleImage from './RectangleImage';
 
-export { BodyElement, Ghost, Hoverable, Icon, Link, Post, PostSelector, RectangleButton };
+export { BodyElement, Ghost, Hoverable, Icon, Link, Post, PostSelector, RectangleButton, RectangleImage };

@@ -9,7 +9,13 @@ import AppNavigator from '@navigation/AppNavigator';
 import { setTopLevelNavigator, navigate } from '@navigation/NavigationService';
 import './styles/global.css';
 
-const assetImages = [];
+const assetImages = [
+  images.MirandasEarth,
+  images.MirandasEarthLine,
+  images.WelcomeToMirandasEarth,
+  images.HowToAdvocateForChange,
+  images.ThePerksOfBeingVegetarian
+];
 
 const cacheImages = (images: any) => {
   return images.map((image: any) => {

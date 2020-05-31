@@ -4,7 +4,7 @@ export interface TMinimumBodyElement {
 
 export interface TAttributedImage {
   attribution: string;
-  source: string;
+  source: any;
 }
 
 export interface TImageElement extends TMinimumBodyElement {
