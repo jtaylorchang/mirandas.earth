@@ -14,13 +14,7 @@ import { Header } from '@components';
 import './styles/global.css';
 import { log } from '@services/logService';
 
-const assetImages = [
-  images.MirandasEarth,
-  images.MirandasEarthLine,
-  images.WelcomeToMirandasEarth,
-  images.HowToAdvocateForChange,
-  images.ThePerksOfBeingVegetarian
-];
+const assetImages = [images.MirandasEarth, images.MirandasEarthLine];
 
 const cacheImages = (images: any) => {
   return images.map((image: any) => {
