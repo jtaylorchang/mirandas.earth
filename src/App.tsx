@@ -3,12 +3,16 @@ import { StyleSheet, Image, View } from 'react-native';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { TRedux } from '@reducers';
+import { _blog } from '@reducers/actions';
 import { images, theme } from '@constants';
 import AppNavigator from '@navigation/AppNavigator';
 import { setTopLevelNavigator, navigate } from '@navigation/NavigationService';
 import { Header } from '@components';
 import './styles/global.css';
+import { log } from '@services/logService';
 
 const assetImages = [
   images.MirandasEarth,
@@ -42,8 +46,13 @@ const _loadResourcesAsync = async () => {
 };
 
 const App = () => {
+  const client = useSelector((state: TRedux) => state.blog.client);
+
   const [isLoadingComplete, setIsLoadingComplete] = React.useState<boolean>(false);
   const [isNavigatorReady, setIsNavigatorReady] = React.useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const dispatchInitClient = React.useCallback(() => dispatch(_blog.initClient()), [dispatch]);
 
   const _handleLoadingError = React.useCallback((error: any) => {
     // In this case, you might want to report the error to your error
@@ -56,12 +65,18 @@ const App = () => {
   }, []);
 
   const handlePath = React.useCallback((path: string) => {
-    console.log('Path', path);
+    log('Path', path);
   }, []);
 
   React.useEffect(() => {
     handlePath(window.location.pathname);
   }, [handlePath]);
+
+  React.useEffect(() => {
+    if (client === null) {
+      dispatchInitClient();
+    }
+  }, [client, dispatchInitClient]);
 
   if (!isLoadingComplete) {
     return (

@@ -9,16 +9,15 @@ import RectangleImage from '@components/RectangleImage';
 
 const Post: React.FC<{
   post: TPost;
-  featured?: boolean;
   expanded?: boolean;
-}> = ({ post, featured = false, expanded = false }) => {
+}> = ({ post, expanded = false }) => {
   if (post === null) return <React.Fragment />;
 
   return (
     <View
       style={[
         styles.container,
-        featured && {
+        post.featured && {
           backgroundColor: `${theme.COLORS.PRIMARY_GREEN}16`
         }
       ]}

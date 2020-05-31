@@ -16,19 +16,19 @@ const BlogContent: React.FC<{
 }> = ({ navigation }) => {
   const isFocused = useIsFocused();
 
+  const client = useSelector((state: TRedux) => state.blog.client);
   const posts = useSelector((state: TRedux) => state.blog.posts);
-  const featuredPost = useSelector((state: TRedux) => state.blog.featuredPost);
 
   const dispatch = useDispatch();
-  const dispatchGetPosts = React.useCallback(() => dispatch(_blog.getPosts()), [dispatch]);
+  const dispatchGetPosts = React.useCallback(() => dispatch(_blog.getPosts(client)), [client, dispatch]);
 
   const scrollRef = React.useRef(undefined);
 
   React.useEffect(() => {
-    if (isFocused) {
+    if (isFocused && client !== null) {
       dispatchGetPosts();
     }
-  }, [dispatchGetPosts, isFocused]);
+  }, [client, dispatchGetPosts, isFocused]);
 
   return (
     <View style={styles.container}>
@@ -37,7 +37,7 @@ const BlogContent: React.FC<{
           <View style={styles.scrollContent}>
             <ScrollView contentContainerStyle={styles.posts}>
               {posts.map((post: TPost) => (
-                <Post key={post._id} featured={featuredPost !== null && post._id === featuredPost._id} post={post} />
+                <Post key={post._id} post={post} />
               ))}
             </ScrollView>
           </View>
