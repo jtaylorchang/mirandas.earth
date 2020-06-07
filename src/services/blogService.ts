@@ -29,7 +29,7 @@ export const parseEntry = (entry: any): TPost => {
     dateRaw: entry.fields.date,
     title: entry.fields.title,
     description: entry.fields.description,
-    body: parseEntryBody(entry.fields.body),
+    body: entry.fields.body,
     image: entry.fields.image
       ? {
           url: entry.fields.image.fields.file.url

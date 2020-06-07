@@ -25,8 +25,8 @@ const BlogContent: React.FC<{ route: Route<'Post'>; navigation: NavigationProp<a
 
       <View style={styles.splitContainer}>
         <View style={styles.splitContent}>
-          <View style={styles.scrollContent}>
-            <ScrollView contentContainerStyle={styles.posts}>
+          <View style={styles.scrollContainer}>
+            <ScrollView contentContainerStyle={styles.scrollContent}>
               {posts.map((post: TPost) => (
                 <Post key={post._id} post={post} />
               ))}
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
     minWidth: 300,
     backgroundColor: `${theme.COLORS.PRIMARY_GREEN}16`
   },
-  scrollContent: {
+  scrollContainer: {
     flex: 1,
     height: '100%'
   },
-  posts: {
+  scrollContent: {
     flex: 1,
     paddingBottom: 20,
     flexDirection: 'row',

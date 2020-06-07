@@ -49,7 +49,7 @@ export interface TPost {
   dateRaw?: string;
   title: string;
   description: string;
-  body: TBodyElement[];
+  body: any;
   image?: TImage;
   featured?: boolean;
 }
