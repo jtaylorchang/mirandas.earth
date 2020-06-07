@@ -1,4 +1,5 @@
 import * as Contentful from 'contentful';
+import moment from 'moment';
 
 import { parseEntries } from '@services/blogService';
 
@@ -47,6 +48,7 @@ export interface TPost {
   category: string;
   date: string;
   dateRaw?: string;
+  dateMoment?: moment.Moment;
   title: string;
   description: string;
   body: any;

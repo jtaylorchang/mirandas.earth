@@ -27,6 +27,7 @@ export const parseEntry = (entry: any): TPost => {
     category: entry.fields.category,
     date: moment(entry.fields.date).format('LL'),
     dateRaw: entry.fields.date,
+    dateMoment: moment(entry.fields.date),
     title: entry.fields.title,
     description: entry.fields.description,
     body: entry.fields.body,
@@ -42,14 +43,13 @@ export const parseEntry = (entry: any): TPost => {
 };
 
 export const parseEntries = (entries: any): TPost[] => {
-  log(entries);
   const posts = [];
 
   for (const entry of entries.items) {
     posts.push(parseEntry(entry));
   }
 
-  log(posts);
+  posts.sort((a, b) => (a.dateMoment.isBefore(b.dateMoment) ? 1 : -1));
 
   return posts;
 };
