@@ -1,10 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useLinkTo } from '@react-navigation/native';
 
-import { TRedux } from '@reducers';
-import { _nav } from '@reducers/actions';
 import { theme } from '@constants';
 import { HEADER_HEIGHT } from '@services/utils';
 import Link from '@components/Link';
@@ -17,9 +14,11 @@ const Header: React.FC<{ label: string }> = ({ label }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>
-        Miranda's <Text style={styles.earthText}>Earth</Text>
-      </Text>
+      <TouchableOpacity activeOpacity={1.0} onPress={onPressBlog}>
+        <Text style={styles.headerText}>
+          Miranda's <Text style={styles.earthText}>Earth</Text>
+        </Text>
+      </TouchableOpacity>
 
       <View style={styles.links}>
         <View style={styles.link}>
