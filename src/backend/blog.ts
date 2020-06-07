@@ -54,6 +54,10 @@ export interface TPost {
   featured?: boolean;
 }
 
+export interface TPostDict {
+  [key: string]: TPost;
+}
+
 export const CONTENTFUL_SPACE_ID = 'z7ovr59r2hn9';
 export const CONTENTFUL_ACCESS_TOKEN = 'zamo1PQqCll72aR2N0y6z5q1zQ1rA6AB187aQ7OPMxY';
 export const CONTENTFUL_BLOG_TYPE = 'blogPost';

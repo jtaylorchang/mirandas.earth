@@ -1,6 +1,6 @@
 import { ContentfulClientApi } from 'contentful';
 
-import { TPost } from '@backend/blog';
+import { TPost, TPostDict } from '@backend/blog';
 
 export const INIT_CLIENT = 'INIT_CLIENT';
 
@@ -15,6 +15,7 @@ export interface TBlogState {
 
   client: ContentfulClientApi;
   posts: TPost[];
+  postsDict: TPostDict;
 }
 
 const initialState: TBlogState = {
@@ -23,7 +24,8 @@ const initialState: TBlogState = {
   getPostsErrorMessage: '',
 
   client: null,
-  posts: []
+  posts: [],
+  postsDict: {}
 };
 
 export default (state = initialState, action: any): TBlogState => {
@@ -44,7 +46,11 @@ export default (state = initialState, action: any): TBlogState => {
       return {
         ...state,
         isGettingPosts: false,
-        posts: action.posts
+        posts: action.posts,
+        postsDict: action.posts.reduce((dict, post) => {
+          dict[post._id] = post;
+          return dict;
+        }, {})
       };
     case GET_POSTS_FAILURE:
       return {

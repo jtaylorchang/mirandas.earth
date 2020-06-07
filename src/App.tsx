@@ -9,8 +9,8 @@ import { TRedux } from '@reducers';
 import { _blog } from '@reducers/actions';
 import { images, theme } from '@constants';
 import AppNavigator from '@navigation/AppNavigator';
-import './styles/global.css';
 import { log } from '@services/logService';
+import './styles/global.css';
 
 const assetImages = [images.MirandasEarth, images.MirandasEarthLine];
 
@@ -44,6 +44,7 @@ const App = () => {
 
   const dispatch = useDispatch();
   const dispatchInitClient = React.useCallback(() => dispatch(_blog.initClient()), [dispatch]);
+  const dispatchGetPosts = React.useCallback(() => dispatch(_blog.getPosts(client)), [client, dispatch]);
 
   const _handleLoadingError = React.useCallback((error: any) => {
     // In this case, you might want to report the error to your error
@@ -55,19 +56,17 @@ const App = () => {
     setIsLoadingComplete(true);
   }, []);
 
-  const handlePath = React.useCallback((path: string) => {
-    log('Path', path);
-  }, []);
-
-  React.useEffect(() => {
-    handlePath(window.location.pathname);
-  }, [handlePath]);
-
   React.useEffect(() => {
     if (client === null) {
       dispatchInitClient();
     }
   }, [client, dispatchInitClient]);
+
+  React.useEffect(() => {
+    if (client !== null) {
+      dispatchGetPosts();
+    }
+  }, [client, dispatchGetPosts]);
 
   if (!isLoadingComplete) {
     return (
