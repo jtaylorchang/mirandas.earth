@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { TPost, TBodyElement } from '@backend/blog';
+import { useLinkTo } from '@react-navigation/native';
 
 import { theme } from '@constants';
 import BodyElement from '@components/BodyElement';
@@ -11,6 +12,14 @@ const Post: React.FC<{
   post: TPost;
   expanded?: boolean;
 }> = ({ post, expanded = false }) => {
+  const linkTo = useLinkTo();
+
+  const onPressRead = React.useCallback(() => {
+    if (post !== null) {
+      linkTo(`/post/${post._id}`);
+    }
+  }, [linkTo, post]);
+
   if (post === null) return <React.Fragment />;
 
   return (
@@ -39,7 +48,7 @@ const Post: React.FC<{
         </View>
       ) : (
         <React.Fragment>
-          <Link label="Read Story" />
+          <Link label="Read Story" onPress={onPressRead} />
           {post.image !== null && (
             <View style={styles.imageWrapper}>
               <RectangleImage image={post.image} />
