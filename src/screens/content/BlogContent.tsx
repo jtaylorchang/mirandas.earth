@@ -8,7 +8,9 @@ import { TRedux } from '@reducers';
 import { _blog } from '@reducers/actions';
 import { TPost } from '@backend/blog';
 import { theme } from '@constants';
-import { Post, PostSelector } from '@components';
+import { Header, Post, PostSelector } from '@components';
+
+const { height } = Dimensions.get('window');
 
 const BlogContent: React.FC = () => {
   const isFocused = useIsFocused();
@@ -29,6 +31,8 @@ const BlogContent: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <Header label="Blog" />
+
       <View style={styles.splitContainer}>
         <View style={styles.splitContent}>
           <View style={styles.scrollContent}>
@@ -46,7 +50,8 @@ const BlogContent: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    height
   },
   content: {
     marginHorizontal: '10%',
@@ -73,6 +78,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   posts: {
+    flex: 1,
     paddingBottom: 20,
     flexDirection: 'row',
     justifyContent: 'center',

@@ -7,6 +7,7 @@ import { theme } from '@constants';
 import { AboutScreen, BlogScreen } from '@screens';
 import { navigationRef } from '@navigation/NavigationService';
 
+// Create stacks
 const AboutStack = createStackNavigator();
 const BlogStack = createStackNavigator();
 
@@ -26,6 +27,7 @@ const BlogStackNavigator = () => {
   );
 };
 
+// Create Tab navigator for caching
 const Tab = createBottomTabNavigator();
 
 const NavigatorTheme: Theme = {
@@ -36,8 +38,10 @@ const NavigatorTheme: Theme = {
   }
 };
 
+// Hides the tab bar flash, coordinated with hiding tab bar visibility
 const ConsumeTabBar = () => <React.Fragment />;
 
+// Handles the URL linking
 const Linking: LinkingOptions = {
   prefixes: ['https://localhost:19006', 'https://mirandas.earth'],
   config: {

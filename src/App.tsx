@@ -9,7 +9,6 @@ import { TRedux } from '@reducers';
 import { _blog } from '@reducers/actions';
 import { images, theme } from '@constants';
 import AppNavigator from '@navigation/AppNavigator';
-import { Header } from '@components';
 import './styles/global.css';
 import { log } from '@services/logService';
 
@@ -77,10 +76,6 @@ const App = () => {
   } else {
     return (
       <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Header />
-        </View>
-
         <AppNavigator />
       </View>
     );
@@ -90,9 +85,6 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  headerContainer: {
-    height: 56
   }
 });
 

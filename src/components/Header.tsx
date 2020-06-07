@@ -1,15 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLinkTo } from '@react-navigation/native';
 
 import { TRedux } from '@reducers';
 import { _nav } from '@reducers/actions';
-import { navigate } from '@navigation/NavigationService';
 import { theme } from '@constants';
+import { HEADER_HEIGHT } from '@services/utils';
 import Link from '@components/Link';
 
-const Header: React.FC = () => {
-  const selectedPageLabel = useSelector((state: TRedux) => state.nav.selectedPageLabel);
+const Header: React.FC<{ label: string }> = ({ label }) => {
+  const linkTo = useLinkTo();
+
+  const onPressBlog = React.useCallback(() => linkTo('/'), [linkTo]);
+  const onPressAbout = React.useCallback(() => linkTo('/about'), [linkTo]);
 
   return (
     <View style={styles.container}>
@@ -19,11 +23,19 @@ const Header: React.FC = () => {
 
       <View style={styles.links}>
         <View style={styles.link}>
-          <Link label="Blog" color={selectedPageLabel === 'Blog' ? theme.COLORS.PRIMARY_GREEN : theme.COLORS.BLACK} />
+          <Link
+            label="Blog"
+            color={label === 'Blog' ? theme.COLORS.PRIMARY_GREEN : theme.COLORS.BLACK}
+            onPress={onPressBlog}
+          />
         </View>
 
         <View style={styles.link}>
-          <Link label="About" />
+          <Link
+            label="About"
+            color={label === 'About' ? theme.COLORS.PRIMARY_GREEN : theme.COLORS.BLACK}
+            onPress={onPressAbout}
+          />
         </View>
       </View>
     </View>
@@ -32,7 +44,7 @@ const Header: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: HEADER_HEIGHT,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
