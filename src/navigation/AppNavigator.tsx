@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, Theme, LinkingOptions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -38,9 +38,25 @@ const NavigatorTheme: Theme = {
 
 const ConsumeTabBar = () => <React.Fragment />;
 
+const Linking: LinkingOptions = {
+  prefixes: ['https://localhost:19006', 'https://mirandas.earth'],
+  config: {
+    Blog: {
+      screens: {
+        Blog: ''
+      }
+    },
+    About: {
+      screens: {
+        About: 'about'
+      }
+    }
+  }
+};
+
 const AppNavigator = () => {
   return (
-    <NavigationContainer ref={navigationRef} theme={NavigatorTheme}>
+    <NavigationContainer ref={navigationRef} theme={NavigatorTheme} linking={Linking}>
       <Tab.Navigator tabBar={ConsumeTabBar} screenOptions={{ tabBarVisible: false }}>
         <Tab.Screen name="Blog" component={BlogStackNavigator} />
         <Tab.Screen name="About" component={AboutStackNavigator} />
