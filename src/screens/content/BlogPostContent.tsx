@@ -16,11 +16,6 @@ const BlogPostContent: React.FC<{ route: Route<'Post'>; navigation: NavigationPr
 }) => {
   const postsDict = useSelector((state: TRedux) => state.blog.postsDict);
 
-  React.useEffect(() => {
-    console.log(route.params);
-    console.log(postsDict);
-  }, [route, postsDict]);
-
   return (
     <View style={styles.container}>
       <Header label="" />
