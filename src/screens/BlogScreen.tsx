@@ -1,12 +1,9 @@
 import React from 'react';
 
-import { ParamType } from '@navigation/NavigationTypes';
 import Content from '@screens/content/BlogContent';
 
-const BlogScreen: React.FC<{
-  navigation: ParamType;
-}> = ({ navigation }) => {
-  return <Content navigation={navigation} />;
+const BlogScreen: React.FC = () => {
+  return <Content />;
 };
 
 export default BlogScreen;

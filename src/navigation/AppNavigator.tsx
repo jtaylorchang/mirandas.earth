@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { theme } from '@constants';
-import { AboutScreen, BlogScreen } from '@screens';
+import { AboutScreen, BlogScreen, BlogPostScreen } from '@screens';
 import { navigationRef } from '@navigation/NavigationService';
 
 // Create stacks
@@ -23,6 +23,7 @@ const BlogStackNavigator = () => {
   return (
     <BlogStack.Navigator screenOptions={{ headerShown: false }}>
       <BlogStack.Screen name="Blog" component={BlogScreen} />
+      <BlogStack.Screen name="Post" component={BlogPostScreen} />
     </BlogStack.Navigator>
   );
 };
@@ -47,7 +48,8 @@ const Linking: LinkingOptions = {
   config: {
     Blog: {
       screens: {
-        Blog: ''
+        Blog: '',
+        Post: 'post'
       }
     },
     About: {
