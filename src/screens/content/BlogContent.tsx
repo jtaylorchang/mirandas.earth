@@ -1,19 +1,16 @@
 import React from 'react';
 import { StyleSheet, Dimensions, View, Text, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { useIsFocused } from 'react-navigation-hooks';
+import { useIsFocused } from '@react-navigation/native';
 import moment from 'moment';
 
-import { ParamType } from '@navigation/NavigationTypes';
 import { TRedux } from '@reducers';
 import { _blog } from '@reducers/actions';
 import { TPost } from '@backend/blog';
 import { theme } from '@constants';
 import { Post, PostSelector } from '@components';
 
-const BlogContent: React.FC<{
-  navigation: ParamType;
-}> = ({ navigation }) => {
+const BlogContent: React.FC = () => {
   const isFocused = useIsFocused();
 
   const client = useSelector((state: TRedux) => state.blog.client);

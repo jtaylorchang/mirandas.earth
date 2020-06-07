@@ -9,7 +9,6 @@ import { TRedux } from '@reducers';
 import { _blog } from '@reducers/actions';
 import { images, theme } from '@constants';
 import AppNavigator from '@navigation/AppNavigator';
-import { setTopLevelNavigator, navigate } from '@navigation/NavigationService';
 import { Header } from '@components';
 import './styles/global.css';
 import { log } from '@services/logService';
@@ -43,7 +42,6 @@ const App = () => {
   const client = useSelector((state: TRedux) => state.blog.client);
 
   const [isLoadingComplete, setIsLoadingComplete] = React.useState<boolean>(false);
-  const [isNavigatorReady, setIsNavigatorReady] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
   const dispatchInitClient = React.useCallback(() => dispatch(_blog.initClient()), [dispatch]);
@@ -83,12 +81,7 @@ const App = () => {
           <Header />
         </View>
 
-        <AppNavigator
-          ref={(navigatorRef) => {
-            setTopLevelNavigator(navigatorRef);
-            setIsNavigatorReady(true);
-          }}
-        />
+        <AppNavigator />
       </View>
     );
   }
