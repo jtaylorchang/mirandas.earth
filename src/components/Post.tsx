@@ -20,7 +20,7 @@ const Post: React.FC<{
     }
   }, [linkTo, post]);
 
-  if (post === null) return <React.Fragment />;
+  if (post === null || post === undefined) return <React.Fragment />;
 
   return (
     <View

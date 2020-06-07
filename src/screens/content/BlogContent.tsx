@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, Dimensions, View, Text, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { useIsFocused } from '@react-navigation/native';
-import moment from 'moment';
+import { Route, NavigationProp } from '@react-navigation/native';
 
 import { TRedux } from '@reducers';
 import { _blog } from '@reducers/actions';
@@ -12,22 +11,13 @@ import { Header, Post, PostSelector } from '@components';
 
 const { height } = Dimensions.get('window');
 
-const BlogContent: React.FC = () => {
-  const isFocused = useIsFocused();
-
-  const client = useSelector((state: TRedux) => state.blog.client);
+const BlogContent: React.FC<{ route: Route<'Post'>; navigation: NavigationProp<any, 'Post'> }> = ({
+  route,
+  navigation
+}) => {
   const posts = useSelector((state: TRedux) => state.blog.posts);
 
-  const dispatch = useDispatch();
-  const dispatchGetPosts = React.useCallback(() => dispatch(_blog.getPosts(client)), [client, dispatch]);
-
   const scrollRef = React.useRef(undefined);
-
-  React.useEffect(() => {
-    if (isFocused && client !== null) {
-      dispatchGetPosts();
-    }
-  }, [client, dispatchGetPosts, isFocused]);
 
   return (
     <View style={styles.container}>

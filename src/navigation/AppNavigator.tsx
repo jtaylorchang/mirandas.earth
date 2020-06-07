@@ -49,7 +49,12 @@ const Linking: LinkingOptions = {
     Blog: {
       screens: {
         Blog: '',
-        Post: 'post/:_id'
+        Post: {
+          path: 'post/:_id',
+          parse: {
+            _id: (_id) => _id
+          }
+        }
       }
     },
     About: {
