@@ -24,7 +24,7 @@ const BlogPostContent: React.FC<{ route: Route<'Post'>; navigation: NavigationPr
         <View style={styles.scrollContainer}>
           <ScrollView contentContainerStyle={styles.scrollContent}>
             <View style={styles.scrollContentBottom}>
-              <Post post={postsDict[route.params['_id']]} expanded={true} />
+              <Post post={postsDict[route.params !== undefined ? route.params['_id'] || '' : '']} expanded={true} />
             </View>
           </ScrollView>
         </View>

@@ -9,12 +9,15 @@ import Link from '@components/Link';
 const Header: React.FC<{ label: string }> = ({ label }) => {
   const linkTo = useLinkTo();
 
-  const onPressBlog = React.useCallback(() => linkTo('/'), [linkTo]);
-  const onPressAbout = React.useCallback(() => linkTo('/about'), [linkTo]);
+  const onPressHome = React.useCallback(() => linkTo('/'), [linkTo]);
+  const onPressLinkedIn = React.useCallback(() => {
+    //linkTo('/about')
+    window.open('https://www.linkedin.com/in/miranda-johnson-56a403149/', '_blank');
+  }, []);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity activeOpacity={1.0} onPress={onPressBlog}>
+      <TouchableOpacity activeOpacity={1.0} onPress={onPressHome}>
         <Text style={styles.headerText}>
           Miranda's <Text style={styles.earthText}>Earth</Text>
         </Text>
@@ -23,18 +26,14 @@ const Header: React.FC<{ label: string }> = ({ label }) => {
       <View style={styles.links}>
         <View style={styles.link}>
           <Link
-            label="Blog"
-            color={label === 'Blog' ? theme.COLORS.PRIMARY_GREEN : theme.COLORS.BLACK}
-            onPress={onPressBlog}
+            label="Home"
+            color={label === 'Home' ? theme.COLORS.PRIMARY_GREEN : theme.COLORS.BLACK}
+            onPress={onPressHome}
           />
         </View>
 
         <View style={styles.link}>
-          <Link
-            label="About"
-            color={label === 'About' ? theme.COLORS.PRIMARY_GREEN : theme.COLORS.BLACK}
-            onPress={onPressAbout}
-          />
+          <Link label="LinkedIn" color={theme.COLORS.BLACK} onPress={onPressLinkedIn} />
         </View>
       </View>
     </View>

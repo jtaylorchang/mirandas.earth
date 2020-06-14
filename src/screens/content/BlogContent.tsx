@@ -21,7 +21,7 @@ const BlogContent: React.FC<{ route: Route<'Post'>; navigation: NavigationProp<a
 
   return (
     <View style={styles.container}>
-      <Header label="Blog" />
+      <Header label="Home" />
 
       <View style={styles.splitContainer}>
         <View style={styles.splitContent}>

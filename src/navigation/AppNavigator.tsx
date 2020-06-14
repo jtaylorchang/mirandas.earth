@@ -10,6 +10,7 @@ import { navigationRef } from '@navigation/NavigationService';
 // Create stacks
 const AboutStack = createStackNavigator();
 const BlogStack = createStackNavigator();
+const PostStack = createStackNavigator();
 
 const AboutStackNavigator = () => {
   return (
@@ -22,9 +23,16 @@ const AboutStackNavigator = () => {
 const BlogStackNavigator = () => {
   return (
     <BlogStack.Navigator screenOptions={{ headerShown: false }}>
-      <BlogStack.Screen name="Blog" component={BlogScreen} />
-      <BlogStack.Screen name="Post" component={BlogPostScreen} />
+      <BlogStack.Screen name="Home" component={BlogScreen} />
     </BlogStack.Navigator>
+  );
+};
+
+const PostStackNavigator = () => {
+  return (
+    <PostStack.Navigator screenOptions={{ headerShown: false }}>
+      <BlogStack.Screen name="Post" component={BlogPostScreen} />
+    </PostStack.Navigator>
   );
 };
 
@@ -46,15 +54,25 @@ const ConsumeTabBar = () => <React.Fragment />;
 const Linking: LinkingOptions = {
   prefixes: ['https://localhost:19006', 'https://mirandas.earth'],
   config: {
-    Blog: {
+    // Home: {
+    //   screens: {
+    //     Home: '',
+    //     Post: 'post/:_id'
+    //   }
+    // }
+    // About: {
+    //   screens: {
+    //     About: 'about'
+    //   }
+    // }
+    Home: {
       screens: {
-        Blog: '',
-        Post: 'post/:_id'
+        Home: ''
       }
     },
-    About: {
+    Post: {
       screens: {
-        About: 'about'
+        Post: 'post/:_id'
       }
     }
   }
@@ -64,8 +82,9 @@ const AppNavigator = () => {
   return (
     <NavigationContainer ref={navigationRef} theme={NavigatorTheme} linking={Linking}>
       <Tab.Navigator tabBar={ConsumeTabBar} screenOptions={{ tabBarVisible: false }}>
-        <Tab.Screen name="Blog" component={BlogStackNavigator} />
-        <Tab.Screen name="About" component={AboutStackNavigator} />
+        <Tab.Screen name="Home" component={BlogStackNavigator} />
+        <Tab.Screen name="Post" component={PostStackNavigator} />
+        {/* <Tab.Screen name="About" component={AboutStackNavigator} /> */}
       </Tab.Navigator>
     </NavigationContainer>
   );
