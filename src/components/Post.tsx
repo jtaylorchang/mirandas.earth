@@ -37,13 +37,13 @@ const Post: React.FC<{
   post: TPost;
   expanded?: boolean;
 }> = ({ post, expanded = false }) => {
-  const linkTo = useLinkTo();
-
-  const onPressRead = React.useCallback(() => {
-    if (post !== null) {
-      linkTo(`/post/${post._id}`);
+  const linkPath = React.useMemo(() => {
+    if (post !== null && post !== undefined) {
+      return `/post/${post._id}`;
     }
-  }, [linkTo, post]);
+
+    return '/';
+  }, [post]);
 
   if (post === null || post === undefined) return <React.Fragment />;
 
@@ -69,7 +69,7 @@ const Post: React.FC<{
         <View style={styles.body}>{documentToReactComponents(post.body, options)}</View>
       ) : (
         <React.Fragment>
-          <Link label="Read Story" onPress={onPressRead} />
+          <Link label="Read Story" path={linkPath} />
           {post.image !== null && (
             <View style={styles.imageWrapper}>
               <RectangleImage image={post.image} />
