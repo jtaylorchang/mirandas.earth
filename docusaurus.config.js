@@ -48,11 +48,11 @@ module.exports = {
           ],
         },
         {
-          title: "Creators",
+          title: "LinkedIn",
           items: [
             {
               label: "Miranda Johnson",
-              href: "https://mirandas.earth/",
+              href: "https://www.linkedin.com/in/mirandapjohnson/",
             },
           ],
         },

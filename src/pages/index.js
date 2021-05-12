@@ -10,7 +10,7 @@ const Home = () => {
   const { siteConfig = {} } = context;
 
   return (
-    <Layout title="Portfolio" description="Miranda's Earth">
+    <Layout title="Miranda's Earth" description="Miranda's Earth">
       <header className={clsx("hero hero--primary", styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -19,11 +19,21 @@ const Home = () => {
             <Link
               className={clsx(
                 "button button--outline button--secondary button--lg whiteButton",
-                styles.getStarted
+                styles.button
               )}
               to="https://mirandas.earth/blog"
             >
-              Read My Blog
+              Read my Blog
+            </Link>
+
+            <Link
+              className={clsx(
+                "button button--outline button--secondary button--lg whiteButton",
+                styles.button
+              )}
+              to="https://www.linkedin.com/in/mirandapjohnson/"
+            >
+              Connect on LinkedIn
             </Link>
           </div>
         </div>

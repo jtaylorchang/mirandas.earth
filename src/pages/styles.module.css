@@ -22,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .features {
@@ -36,6 +37,7 @@
   width: 200px;
 }
 
-.getStarted {
+.button {
+  margin: 1rem;
   color: white !important;
 }
