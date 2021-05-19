@@ -1,8 +1,8 @@
 ---
 id: "badm-canva-case"
-title: "BADM 323 Marketing Communications"
+title: "BADM 323 Canva Case"
 slug: "/school/badm-canva-case"
-sidebar_label: "BADM 323 Marketing Communications"
+sidebar_label: "BADM 323 Canva Case"
 hide_table_of_contents: true
 custom_edit_url: null
 hide_title: true
