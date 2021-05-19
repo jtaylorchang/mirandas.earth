@@ -8,4 +8,4 @@ author_image_url: https://mirandas.earth/img/logo512.png
 tags: [blog]
 ---
 
-Coming soon!
+This is the start of my blog on environmental policy and sustainability!

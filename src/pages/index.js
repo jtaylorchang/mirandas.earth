@@ -38,6 +38,17 @@ const Home = () => {
           </div>
         </div>
       </header>
+
+      <div className="container">
+        <p className={clsx(styles.mainContent)}>
+          My name is Miranda Johnson and I studied Earth, Society, and
+          Environmental Sustainability with a certificate in Environmental
+          Writing and a minor in Business at the University of Illinois at
+          Urbana-Champaign. I was one of 4 students to graduate with high
+          distinction and I was the graduation speaker for my major. Read about
+          my work at the University and my internships at non-profits!
+        </p>
+      </div>
     </Layout>
   );
 };
