@@ -1,1 +1,1 @@
-module.exports = ["school/index"];
+module.exports = ["school/index", "school/nres-policy-memo"];
